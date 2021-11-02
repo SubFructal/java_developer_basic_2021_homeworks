@@ -21,7 +21,7 @@ public class TestingSystem {
     public static final String[] QUESTIONS = new String[5];
     public static final String[][] OPTIONS_FOR_QUESTIONS = new String[5][4];
     public static final String[] VALID_ANSWERS = new String[]{"D", "B", "C", "A", "C"};
-    public static int count;
+    public static int validAnswersCount;
 
     static {
         QUESTIONS[0] = "Какого цвета лента Георгиевского креста, учреждённого в 1807 году?";
@@ -68,10 +68,30 @@ public class TestingSystem {
                 System.out.print("Выберите вариант ответа A, B, C или D и нажмите Enter: ");
 
                 String answer = scanner.nextLine().trim();
+                boolean isNonCorrect = true;
+                int count = 0;
+
+                while (isNonCorrect) {
+                    for (Options answerOption : Options.values()) {
+                        if (answer.equalsIgnoreCase(answerOption.toString())) {
+                            isNonCorrect = false;
+                            break;
+                        } else {
+                            count++;
+                        }
+                    }
+                    if (count == Options.values().length) {
+                        count = 0;
+                        System.out.print("Вы ввели некорректные данные." +
+                                "Выберите вариант ответа A, B, C или D и нажмите Enter: ");
+                        answer = scanner.nextLine().trim();
+                    }
+                }
+
                 if (answer.equalsIgnoreCase(VALID_ANSWERS[i])) {
                     System.out.println();
                     System.out.println("Поздравляем! Это правильный ответ!\n");
-                    count++;
+                    validAnswersCount++;
                 } else {
                     System.out.println();
                     System.out.println("К сожалению, этот ответ неправильный... Правильный ответ "
@@ -79,12 +99,12 @@ public class TestingSystem {
                 }
             }
         }
-        if (count == VALID_ANSWERS.length) {
+        if (validAnswersCount == VALID_ANSWERS.length) {
             System.out.println("Великолепно! Вы ответили правильно на все вопросы! Тест окончен");
-        } else if (count == 0) {
+        } else if (validAnswersCount == 0) {
             System.out.println("Да уж... Вы не ответили правильно ни на один вопрос, читайте книги... Тест окончен");
         } else {
-            System.out.printf("Тест окончен. Количество правильных ответов: %d", count);
+            System.out.printf("Тест окончен. Количество правильных ответов: %d", validAnswersCount);
         }
     }
 
