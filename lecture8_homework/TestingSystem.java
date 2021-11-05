@@ -9,7 +9,7 @@ import java.io.IOException;
 Продумать структуру классов и как они будут между собой взаимодействовать (какие будут методы в классах).
 */
 
-public class TestingSystem {
+public final class TestingSystem {
 
     public static void main(String[] args) throws IOException {
 

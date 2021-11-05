@@ -1,6 +1,6 @@
 package ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture8_homework;
 
-public class ValidAnswers {
+public final class ValidAnswers {
 
 	private static final String[] VALID_ANSWERS = new String[] { "D", "B", "C", "A", "C" };
 	private static int validAnswersCount;

@@ -1,6 +1,6 @@
 package ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture8_homework;
 
-public class OptionsForQuestions {
+public final class OptionsForQuestions {
 
 	private static final String[][] OPTIONS_FOR_QUESTIONS = new String[5][4];
 
