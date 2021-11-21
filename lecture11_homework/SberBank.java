@@ -16,6 +16,7 @@ import java.util.*;
 public class SberBank implements Bank {
 
     private final Map<Account, Client> accountClients = new HashMap<>();
+    private final Map<Client, List<Account>> clientAccounts = new HashMap<>();
 
     public static void main(String[] args) {
 
@@ -48,24 +49,31 @@ public class SberBank implements Bank {
     @Override
     public void addNewEntry(Account account, Client client) {
         this.accountClients.put(account, client);
+
+        if (this.clientAccounts.containsKey(client)) {
+            List<Account> accounts = clientAccounts.get(client);
+            accounts.add(account);
+        } else {
+            clientAccounts.put(client, new ArrayList<>(Collections.singletonList(account)));
+        }
     }
 
     @Override
     public List<Account> getAccounts(Client client) {
-        List<Account> accounts = new ArrayList<>();
-
-        for (Map.Entry<Account, Client> pairs : accountClients.entrySet()) {
-            if (pairs.getValue().equals(client)) {
-                accounts.add(pairs.getKey());
-            }
-        }
-
-        return accounts;
+//        List<Account> accounts = new ArrayList<>();
+//
+//        for (Map.Entry<Account, Client> pairs : accountClients.entrySet()) {
+//            if (pairs.getValue().equals(client)) {
+//                accounts.add(pairs.getKey());
+//            }
+//        }
+//
+//        return accounts;
+        return this.clientAccounts.get(client);
     }
 
     @Override
     public Client getClient(Account account) {
         return this.accountClients.get(account);
     }
-
 }
