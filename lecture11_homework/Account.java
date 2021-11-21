@@ -4,7 +4,7 @@ public class Account {
 
     private final int id;
     private final long balance;
-    private String comment;
+    private final String comment;
 
     public Account(int id, long balance, String comment) {
         this.id = id;
