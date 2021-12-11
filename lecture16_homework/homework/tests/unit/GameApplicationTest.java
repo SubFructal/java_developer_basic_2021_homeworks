@@ -28,11 +28,11 @@ public class GameApplicationTest {
             game.playGame(playerPete, playerAnn);
 
             String actualPlayGameResult = actualFlow.get(0);
-            String variantOfTheResultWhenPlayerPeteIsWinner = String.format("Победитель: %s%n", playerPete.getName());
-            String variantOfTheResultWhenPlayerAnnIsWinner = String.format("Победитель: %s%n", playerAnn.getName());
+            String variantOfThePlayGameResultWhenPlayerPeteIsWinner = String.format("Победитель: %s%n", playerPete.getName());
+            String variantOfThePlayGameResultWhenPlayerAnnIsWinner = String.format("Победитель: %s%n", playerAnn.getName());
 
-            boolean isActualPlayGameResultCorrect = !(actualPlayGameResult.equals(variantOfTheResultWhenPlayerPeteIsWinner)
-                    || actualPlayGameResult.equals(variantOfTheResultWhenPlayerAnnIsWinner));
+            boolean isActualPlayGameResultCorrect = !(actualPlayGameResult.equals(variantOfThePlayGameResultWhenPlayerPeteIsWinner)
+                    || actualPlayGameResult.equals(variantOfThePlayGameResultWhenPlayerAnnIsWinner));
             Assertions.assertEquals(true, isActualPlayGameResultCorrect);
 
             System.out.printf("\"%s\" passed %n", scenario);
