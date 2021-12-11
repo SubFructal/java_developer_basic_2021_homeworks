@@ -1,7 +1,7 @@
 package ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture16_homework.homework.tests;
 
 import ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture16_homework.homework.tests.unit.DiceImplTest;
-import ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture16_homework.homework.tests.unit.GameTest;
+import ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture16_homework.homework.tests.unit.GameApplicationTest;
 
 public class AllTests {
     public static void main(String[] args) {
@@ -14,8 +14,8 @@ public class AllTests {
         new DiceImplTest().testDiceImplForN5();
         new DiceImplTest().testDiceImplForN6();
 
-        new GameTest().testPlayGame();
+        new GameApplicationTest().testPlayGameWithTheSameResultsForBothPlayers();
+        new GameApplicationTest().testAppFlow();
 
     }
-
 }
