@@ -1,0 +1,20 @@
+CREATE TABLE valid_answer
+(
+	id   INTEGER PRIMARY KEY,
+    value VARCHAR(5) NOT NULL UNIQUE
+);
+
+CREATE TABLE question
+(
+    id INTEGER PRIMARY KEY,
+    id_valid_answer INTEGER REFERENCES valid_answer (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    value  VARCHAR(150) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE variant
+(
+    id INTEGER PRIMARY KEY,
+    id_question INTEGER REFERENCES question (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    value  VARCHAR(150) NOT NULL
+);
