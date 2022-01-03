@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>ДЗ к лекциям 19-20</title>
+		
+		<style>
+			.students-tab {
+				border: 1px solid steelblue;
+				width: 650px;
+				border-collapse: collapse;
+			}
+
+			.students-tab tr td {
+				border: 1px solid steelblue;
+			}
+
+			.students-tab-col1 {
+				width: 300px;
+			}
+
+			.students-tab-col2 {
+				width: 120px;
+			}
+
+			.students-tab-col3 {
+				width: 150px;
+			}
+
+			.students-tab-col4 {
+				width: 80px;
+			}
+			
+			.student-input-form {
+				border: 1px solid steelblue;
+				width: 520px;
+			}
+					
+			.label-student-name {
+				width: 200px;
+				margin-left: 10px;
+			}
+			
+			#studentName {
+				border: 1px solid steelblue;
+				width: 299px;
+				margin-left: 96px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			
+			.label-student-birthday {
+				width: 200px;
+				margin-left: 10px;
+			}
+			
+			#studentBirthdayDate {
+				border: 1px solid steelblue;
+				width: 302px;
+				margin-left: 85px;
+				margin-bottom: 10px;
+			}
+			
+			.label-student-gender {
+				width: 200px;
+				margin-left: 10px;
+			}
+			
+			#studentGender {
+				border: 1px solid steelblue;
+				width: 305px;
+				margin-left: 160px;
+				margin-bottom: 30px;
+			}
+			
+			.buttom {
+				margin-left: 10px;
+				margin-bottom: 15px;
+			}		
+		</style>
+		
+		<script>
+			"use strict"
+			
+			function addStudent() {
+				const studentsTabBody = document.getElementById("studentsTabBody");
+			
+				const studentName = document.getElementById("studentName").value;
+				const studentBirthdayDate = document.getElementById("studentBirthdayDate").value;
+				const studentGender = document.getElementById("studentGender").value;
+				
+				//console.log(studentName);
+				//console.log(studentBirthdayDate);
+				//console.log(studentGender);
+				//console.log(new Date(studentBirthdayDate).toLocaleDateString());
+				
+				const newRow = studentsTabBody.insertRow(studentsTabBody.rows.length);
+			
+				const newStudentNameCell = newRow.insertCell(-1);
+				newStudentNameCell.appendChild(document.createTextNode(studentName));
+			
+				const newStudentGenderCell = newRow.insertCell(-1);
+				newStudentGenderCell.appendChild(document.createTextNode(studentGender));
+			
+				const newStudentBirthdayDateCell = newRow.insertCell(-1);
+				newStudentBirthdayDateCell.appendChild(document.createTextNode(new Date(studentBirthdayDate).toLocaleDateString()));
+			
+				const newStudentAgeCell = newRow.insertCell(-1);
+				newStudentAgeCell.appendChild(document.createTextNode(getSomeStudentAge(studentBirthdayDate)));
+			
+				const studentAverageAgeCell = document.getElementById("studentAverageAgeCell");
+				studentAverageAgeCell.innerText = getAllStudentsAverageAge(studentsTabBody);
+			}
+			
+			function getSomeStudentAge(studentBirthdayDate) {
+				return Math.floor((new Date() - new Date(studentBirthdayDate)) /1000/60/60/24/365);
+			}
+					
+			function getAllStudentsAverageAge(studentsTabBody) {
+				let sum = 0;
+				for(let i = 0, row; row = studentsTabBody.rows[i]; i++) {
+					sum += parseInt(row.cells[3].innerText);
+				}
+				//console.log(sum);
+				return sum / studentsTabBody.rows.length;
+			}			
+		</script>
+	</head>
+	<body>
+	
+		<h3>Форма добавления информации о студенте</h3>
+		<div class = "student-input-form">
+			<label class = "label-student-name">
+				Имя студента:
+				<input id = "studentName" type = "text", value = "ФИО">
+			<label/>
+			<br/>
+			<label class = "label-student-birthday">
+				Дата рождения:
+				<input id = "studentBirthdayDate" type = "date", value = "1990-01-01">
+			</label>
+			<br/>
+			<label class = "label-student-gender">
+				Пол:
+				<select id = "studentGender">
+					<option value = "мужчина" selected>мужчина</option>
+					<option value = "женщина">женщина</option>
+				</select>
+			</label>
+			<br/>
+			<button class = "buttom" onclick = "addStudent()">Добавить</button>
+		</div>
+	
+		<h3>Таблица студентов</h3>
+		<table class = "students-tab">
+			<thead>
+				<tr>
+					<td class="students-tab-col1">Имя студента</td>
+					<td class="students-tab-col2">Пол</td>
+					<td class="students-tab-col3">Дата рождения</td>
+					<td class="students-tab-col4">Возраст</td>
+				</tr>
+			</thead>
+			<tbody id = "studentsTabBody">
+				<!--<tr>
+					<td>Тест Тестович Тестов</td>
+					<td>мужчина</td>
+					<td>01.01.1990</td>
+					<td>31</td>
+				</tr>-->
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan = "4">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan = "3">Средний возраст студентов</td>
+					<td id = "studentAverageAgeCell">0</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+	</body>
+	
+</html>
