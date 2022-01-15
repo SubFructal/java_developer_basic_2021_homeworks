@@ -12,12 +12,10 @@ public class FinalProjectFastVersion {
 
             String s = in.nextLine();
 
-            // Обработка команды выхода
             if (s.equalsIgnoreCase("exit")) {
                 break;
             }
 
-            // обработка корректности ввода
             boolean checked = true;
             try {
                 if (s.startsWith("+")) {
@@ -44,7 +42,6 @@ public class FinalProjectFastVersion {
                 subS = s;
             }
 
-//            System.out.println(subS);
 
             String result = new BigInteger(s).abs() + " ";
 
@@ -53,7 +50,6 @@ public class FinalProjectFastVersion {
             List<Integer> list3 = List.of(0, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19);
 
             int number = Integer.parseInt(subS);
-//            System.out.println(number);
 
             if (list3.contains(number)) {
                 result += "рублей";
