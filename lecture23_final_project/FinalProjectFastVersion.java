@@ -12,6 +12,7 @@ public class FinalProjectFastVersion {
 
             String s = in.nextLine();
 
+
             if (s.equalsIgnoreCase("exit")) {
                 break;
             }
