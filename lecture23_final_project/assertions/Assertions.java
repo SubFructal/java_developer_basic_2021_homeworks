@@ -1,0 +1,58 @@
+package ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture23_final_project.assertions;
+
+import ru.sendgoods.otus.java_developer_basic_2021_homeworks.lecture23_final_project.app.domain.InputEquation;
+
+public class Assertions {
+    public static void assertEquals(int expected, int actual) {
+        if (expected != actual) {
+            throw new AssertionError(String.format("Expected %d = %d", expected, actual));
+        }
+    }
+
+    public static void assertEquals(long expected, long actual) {
+        if (expected != actual) {
+            throw new AssertionError(String.format("Expected %d = %d", expected, actual));
+        }
+    }
+
+    public static void assertEquals(String expected, String actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError(String.format("Expected \"%s\" = \"%s\"", expected, actual));
+        }
+    }
+
+    public static void assertEquals(InputEquation expected, InputEquation actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError(String.format("Expected \"%s\" = \"%s\"", expected, actual));
+        }
+    }
+
+    public static void assertEquals(boolean expected, boolean actual) {
+        if (expected != actual) {
+            throw new AssertionError(String.format("Expected %b = %b", expected, actual));
+        }
+    }
+
+    public static void assertEquals(Class<? extends Throwable> expected, Class<? extends Throwable> actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError(String.format("Expected \"%s\" = \"%s\"", expected, actual));
+        }
+    }
+
+    public static void assertThrows(Class<? extends Throwable> expected, Runnable code) {
+        Throwable actual = null;
+        try {
+            code.run();
+        } catch (Throwable e) {
+            actual = e;
+        }
+        if (actual == null) {
+            throw new AssertionError("Given code does not throw any exception");
+        }
+
+        if (!actual.getClass().equals(expected)) {
+            throw new AssertionError(String.format("Expected \"%s\" = \"%s\"", expected.getSimpleName(), actual.getClass().getSimpleName()));
+        }
+    }
+
+}
